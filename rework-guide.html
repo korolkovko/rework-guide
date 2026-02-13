@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>REWORK — Гайд по студии</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #1a1a1a;
+    --surface: #222222;
+    --surface-raised: #282828;
+    --border: #2e2e2e;
+    --border-light: #363636;
+    --text: #d4d4d4;
+    --text-secondary: #8a8a8a;
+    --text-heading: #f0f0f0;
+    --green: #00e64d;
+    --green-soft: rgba(0, 230, 77, 0.08);
+    --green-border: rgba(0, 230, 77, 0.15);
+    --warn-red: #e85050;
+    --warn-bg: rgba(232, 80, 80, 0.06);
+    --warn-border: rgba(232, 80, 80, 0.14);
+    --radius: 10px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    padding: 56px 20px 20px;
+    text-align: center;
+  }
+  .hero-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    color: var(--green);
+    line-height: 1;
+  }
+  .hero-sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  .nav {
+    display: flex;
+    gap: 6px;
+    padding: 20px 16px 36px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a {
+    flex-shrink: 0;
+    padding: 7px 14px;
+    border-radius: 100px;
+    background: transparent;
+    border: 1px solid var(--border-light);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .nav a:active,
+  .nav a:hover {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .container {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+  }
+
+  .section {
+    margin-bottom: 48px;
+  }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-heading);
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+  .card-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: 10px;
+    letter-spacing: 0.2px;
+  }
+
+  .wifi-box {
+    background: var(--surface);
+    border: 1px solid var(--green-border);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .wifi-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .wifi-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 4px;
+  }
+  .wifi-pass {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .wifi-pass-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+  .wifi-pass-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-heading);
+    background: var(--green-soft);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: all;
+    border: 1px solid var(--green-border);
+    transition: border-color 0.15s;
+  }
+  .wifi-pass-value:active {
+    border-color: var(--green);
+  }
+  .copy-hint {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 10px;
+  }
+
+  .img-wrap {
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 14px 0;
+    border: 1px solid var(--border);
+  }
+  .img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .img-caption {
+    font-size: 12px;
+    color: var(--text-secondary);
+    padding: 10px 14px;
+    background: var(--surface);
+    line-height: 1.4;
+  }
+
+  p {
+    margin-bottom: 8px;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .step + .step {
+    margin-top: 14px;
+  }
+  .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--green-soft);
+    border: 1px solid var(--green-border);
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-text {
+    flex: 1;
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+
+  .callout {
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 14px;
+    margin: 14px 0;
+    line-height: 1.55;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .callout-icon {
+    flex-shrink: 0;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .callout-text {
+    flex: 1;
+  }
+  .callout.warn {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    color: #d49494;
+  }
+  .callout.warn strong {
+    color: #e8a0a0;
+  }
+  .callout.tip {
+    background: var(--green-soft);
+    border: 1px solid var(--green-border);
+    color: #7cc89a;
+  }
+
+  .mono {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9em;
+    background: var(--green-soft);
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  strong {
+    font-weight: 600;
+    color: var(--text-heading);
+  }
+
+  .text-dim {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 24px 0;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 32px 16px 48px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 4px;
+  }
+
+  @media (min-width: 768px) {
+    .hero { padding: 72px 20px 24px; }
+    .hero-logo { font-size: 38px; }
+    .container { max-width: 560px; padding: 0 24px 100px; }
+    .section-title { font-size: 24px; }
+    .card { padding: 22px; }
+    .nav { justify-content: center; padding: 20px 24px 40px; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section {
+    animation: fadeIn 0.4s ease both;
+  }
+  .section:nth-child(2) { animation-delay: 0.04s; }
+  .section:nth-child(3) { animation-delay: 0.08s; }
+  .section:nth-child(4) { animation-delay: 0.12s; }
+  .section:nth-child(5) { animation-delay: 0.16s; }
+  .section:nth-child(6) { animation-delay: 0.20s; }
+  .section:nth-child(7) { animation-delay: 0.24s; }
+
+  .img-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .img-grid .img-wrap {
+    margin: 0;
+  }
+
+  .hero-logo-img {
+    display: block;
+    margin: 0 auto;
+    width: 180px;
+    height: auto;
+  }
+  .footer-logo-img {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: auto;
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <img src="rework-logo.svg" alt="REWORK" class="hero-logo-img" width="180" height="50">
+</div>
+
+<div class="nav">
+  <a href="#wifi">Wi-Fi</a>
+  <a href="#address">Адрес</a>
+  <a href="#lock">Замок</a>
+  <a href="#light">Свет</a>
+  <a href="#music">Музыка</a>
+  <a href="#climate">Климат</a>
+  <a href="#inventory">Инвентарь</a>
+</div>
+
+<div class="container">
+
+  <div class="section" id="wifi">
+    <div class="wifi-box">
+      <div class="wifi-label">Сеть Wi-Fi</div>
+      <div class="wifi-name">REWORK</div>
+      <div class="wifi-pass">
+        <span class="wifi-pass-label">Пароль:</span>
+        <span class="wifi-pass-value" onclick="copyPass(this)">reworkrework</span>
+      </div>
+      <div class="copy-hint" id="copyHint">Нажмите на пароль, чтобы скопировать</div>
+    </div>
+  </div>
+
+  <div class="section" id="address">
+    <div class="section-label">01</div>
+    <div class="section-title">Как найти студию</div>
+    <div class="card">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Карла Либкнехта, 22</strong> — вход 1, ближний к Театру музыкальной комедии.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Поднимитесь по лестнице на <strong>2-й этаж</strong>.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Офис 204</strong> — зелёная дверь с надписью ENTER. Не пройдёте мимо.</div>
+      </div>
+    </div>
+    <div class="img-wrap">
+      <img src="pictures/Зелёная дверь с надписью ENTER.jpeg" alt="Зелёная дверь ENTER" width="1320" height="1241" loading="lazy" decoding="async">
+      <div class="img-caption">Зелёная дверь с надписью ENTER</div>
+    </div>
+  </div>
+
+  <div class="section" id="lock">
+    <div class="section-label">02</div>
+    <div class="section-title">Замок</div>
+
+    <div class="card">
+      <div class="card-label">Вход в студию</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Активируйте панель замка — проведите рукой, как по экрану телефона.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Введите персональный код и нажмите <span class="mono">#</span> (кнопка в правом нижнем углу).</div>
+      </div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="pictures/Панель замка — введите код и нажмите #.jpeg" alt="Панель замка снаружи" width="2048" height="1578" loading="lazy" decoding="async">
+      <div class="img-caption">Панель замка — введите код и нажмите #</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Выход из студии</div>
+      <p>Закройте дверь и нажмите кнопку <strong>ЗАМОК</strong> — в левом нижнем углу панели.</p>
+    </div>
+
+    <div class="img-wrap">
+      <img src="pictures/Замок с внутренней стороны двери.jpeg" alt="Замок изнутри" width="2048" height="1536" loading="lazy" decoding="async">
+      <div class="img-caption">Замок с внутренней стороны двери</div>
+    </div>
+
+    <div class="callout warn">
+      <span class="callout-icon">⚠</span>
+      <span class="callout-text">После трёх неверных попыток ввода кода замок блокируется на 3 минуты.</span>
+    </div>
+
+    <div class="callout tip">
+      <span class="callout-icon">💡</span>
+      <span class="callout-text">Во время занятий рекомендуем закрывать замок изнутри.</span>
+    </div>
+  </div>
+
+  <div class="section" id="light">
+    <div class="section-label">03</div>
+    <div class="section-title">Свет в студии</div>
+
+    <p class="text-dim">Свет включается в двух местах.</p>
+
+    <div class="card">
+      <div class="card-label">Выключатель у входа</div>
+      <p>При входе в студию сразу справа — белый выключатель на стекле входной стены.</p>
+      <div class="divider"></div>
+      <p><strong>Левая кнопка</strong> — общий свет</p>
+      <p><strong>Правая кнопка</strong> — розовая подсветка</p>
+    </div>
+
+    <div class="img-wrap">
+      <img src="pictures/Белый выключатель на стекле — сразу справа от входа.jpeg" alt="Выключатель у входа" width="2048" height="1552" loading="lazy" decoding="async">
+      <div class="img-caption">Белый выключатель на стекле — сразу справа от входа</div>
+    </div>
+
+    <div class="callout warn">
+      <span class="callout-icon">⚠</span>
+      <span class="callout-text">Розовую подсветку выключать <strong>не надо</strong> — она должна быть включена всегда.</span>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Кнопка в зале</div>
+      <p>Справа от зеркал, у правого стеллажа.</p>
+      <div class="divider"></div>
+      <p><strong>Одно нажатие</strong> — общий свет</p>
+      <p><strong>Два нажатия</strong> — бегущая строка</p>
+      <p style="color: var(--text-secondary); font-size: 13px; margin-top: 8px;">Схема нажатий для включения и выключения одинаковая.</p>
+    </div>
+
+    <div class="img-wrap">
+      <img src="pictures/Кнопка в зале — справа от зеркал, у стеллажа.jpeg" alt="Кнопка R в зале" width="2048" height="1760" loading="lazy" decoding="async">
+      <div class="img-caption">Кнопка в зале — справа от зеркал, у стеллажа</div>
+    </div>
+  </div>
+
+  <div class="section" id="music">
+    <div class="section-label">04</div>
+    <div class="section-title">Музыка</div>
+
+    <p class="text-dim">В зале две колонки. Правая и левая — если встать лицом к зеркалу.</p>
+
+    <div class="card">
+      <div class="card-label">Включение</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Включите <strong>правую</strong> колонку красной кнопкой.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Затем включите <strong>левую</strong> колонку красной кнопкой.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">Убедитесь, что на обеих колонках выбран режим <span class="mono">AUX 2</span> (кнопка со стрелкой).</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">На правой колонке включите Bluetooth.</div>
+      </div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="pictures/Красная кнопка — включение колонки.jpeg" alt="Колонка — вид сверху" width="2048" height="1536" loading="lazy" decoding="async">
+      <div class="img-caption">Красная кнопка — включение колонки</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="pictures/Убедитесь, что выбран AUX 2.jpeg" alt="Режим AUX 2" width="572" height="489" loading="lazy" decoding="async">
+      <div class="img-caption">Убедитесь, что выбран AUX 2</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="pictures/Bluetooth — на правой колонке.jpeg" alt="Bluetooth на правой колонке" width="2048" height="1536" loading="lazy" decoding="async">
+      <div class="img-caption">Bluetooth — на правой колонке</div>
+    </div>
+
+    <div class="callout tip">
+      <span class="callout-icon">📱</span>
+      <span class="callout-text">Подключайтесь по Bluetooth к устройству <span class="mono">MX–T50</span></span>
+    </div>
+
+    <div class="callout warn">
+      <span class="callout-icon">⚠</span>
+      <span class="callout-text">На левой колонке Bluetooth включать <strong>не надо</strong>.</span>
+    </div>
+  </div>
+
+  <div class="section" id="climate">
+    <div class="section-label">05</div>
+    <div class="section-title">Климат</div>
+
+    <div class="card">
+      <div class="card-label">Кондиционер</div>
+      <p>Расположен в зале под окном. Пульт — на правом стеллаже.</p>
+      <div class="divider"></div>
+      <p><strong>Mode</strong> — <span class="mono">Cool</span></p>
+      <p><strong>Fan Speed</strong> — <span class="mono">Med</span></p>
+    </div>
+
+    <div class="img-grid">
+      <div class="img-wrap">
+        <img src="pictures/Кондиционер под окном, пульт на стеллаже.jpeg" alt="Кондиционер и пульт" width="2048" height="1647" loading="lazy" decoding="async">
+        <div class="img-caption">Кондиционер под окном</div>
+      </div>
+      <div class="img-wrap">
+        <img src="pictures/Кондиционер под окном, пульт на стеллаже-2.jpeg" alt="Пульт кондиционера на стеллаже" width="1900" height="2048" loading="lazy" decoding="async">
+        <div class="img-caption">Пульт на стеллаже</div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <span class="callout-icon">⚠</span>
+      <span class="callout-text">Кондиционер можно использовать только при температуре на улице <strong>выше +6°C</strong>.</span>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Вентиляторы</div>
+      <p>На правом стеллаже есть 2 вентилятора. Включите в розетку. После использования верните на место.</p>
+    </div>
+
+    <div class="img-wrap">
+      <img src="pictures/Два вентилятора — на правом стеллаже.jpeg" alt="Вентиляторы на стеллаже" width="2048" height="1536" loading="lazy" decoding="async">
+      <div class="img-caption">Два вентилятора — на правом стеллаже</div>
+    </div>
+  </div>
+
+  <div class="section" id="inventory">
+    <div class="section-label">06</div>
+    <div class="section-title">Инвентарь и удобства</div>
+
+    <div class="card">
+      <p>Весь инвентарь на стеллажах можно использовать, но обязательно верните всё на свои места — как показано на фото.</p>
+    </div>
+
+    <div class="img-wrap">
+      <img src="pictures/Инвентарь — каждая вещь на своём месте.jpeg" alt="Стеллаж с инвентарём" width="2048" height="1536" loading="lazy" decoding="async">
+      <div class="img-caption">Инвентарь — каждая вещь на своём месте</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Также в студии есть</div>
+      <p>Свежая вода и многоразовые стаканы для общего пользования, а также место для мусора.</p>
+    </div>
+
+    <div class="img-wrap">
+      <img src="pictures/Вода и стаканы — на полке.jpeg" alt="Полка с водой и стаканами" width="1320" height="1602" loading="lazy" decoding="async">
+      <div class="img-caption">Вода и стаканы — на полке</div>
+    </div>
+
+    <div class="callout tip">
+      <span class="callout-icon">🧹</span>
+      <span class="callout-text">Стаканы после использования, пожалуйста, помойте и поставьте на место.</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <img src="rework-logo.svg" alt="REWORK" class="footer-logo-img" width="120" height="34">
+</div>
+
+<script>
+function copyPass(el) {
+  const text = el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const hint = document.getElementById('copyHint');
+    hint.textContent = '✓ Скопировано';
+    hint.style.color = 'var(--green)';
+    setTimeout(() => {
+      hint.textContent = 'Нажмите на пароль, чтобы скопировать';
+      hint.style.color = '';
+    }, 2000);
+  }).catch(() => {
+    const range = document.createRange();
+    range.selectNode(el);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+  });
+}
+</script>
+</body>
+</html>
